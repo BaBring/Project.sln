@@ -1,20 +1,65 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{04AE4F4D-9419-339E-6D97-5093D9625999}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{04AE4F4D-9419-339E-6D97-5093D9625999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04AE4F4D-9419-339E-6D97-5093D9625999}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04AE4F4D-9419-339E-6D97-5093D9625999}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04AE4F4D-9419-339E-6D97-5093D9625999}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-EndGlobal
+using System;
+
+public class Rect
+{
+    public int x1,x2,y1,y2;
+    public Rect(int x1, int x2, int y1, int y2)
+    {
+        this.x1 = x1;
+        this.x2 = x2;
+        this.y1 = y1;
+        this.y2 = y2;
+    }
+    public void draw()
+    {
+        Console.WriteLine("({0},{1},{2},{3})",x1,y1,x2,y2);
+    }
+    public void move(int d)
+    {
+        x1 += d; y1 += d; x2 += d; y2 += d;
+        Console.WriteLine("({0},{1},{2},{3})", x1, y1, x2, y2);
+    }
+}
+public class Cir
+{
+    public int x, y, r;
+    public Cir(int x,int y,int r)
+    {
+        x = this.x;
+        y = this.y;
+        r = this.r;
+    }
+
+    public void draw()
+    {
+        Console.WriteLine("({0},{1},{2})", x, y, r);
+    }
+    public void move(int d)
+    {
+        x+= d; y += d;
+        Console.WriteLine("({0},{1},{2})", x, y, r);
+    }
+}
+
+public class Com
+{
+    Cir cir = new Cir(1,2,3); Rect rect = new Rect(1,2,3,4);
+    public void draw()
+    {
+        rect.draw(); cir.draw();
+    }
+    public void move(int d)
+    {
+        rect.move(d);cir.move(d);   
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        Com com = new Com();
+        com.draw();
+        com.move(10);
+        com.draw();
+    }
+}
